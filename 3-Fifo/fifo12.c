@@ -1,24 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <string.h>
 #include <unistd.h>
-#include <sys/wait.h> 
+#include <sys/stat.h> 
+#include <time.h>
 
-void main(){
+int main(){
 	
-	char[1]chars
+	char looking[1];
 	int num=-1;
+	int fp;
 	
 	printf("Waiting ... \n");
 	
 	while(num==-1){
-		fp = open ("./Pipes/FIFO1",0)
+		fp = open ("./Pipes/FIFO1",0);
 		
-		if(read(fp,chars,sizeof(chars))!=-1){
-			num=atoi(chars);
+		if(read(fp,looking,sizeof(looking))!=-1){
+			num=atoi(looking);
 		}
 	}
-	printf("%d",num);
+
+	close(fp);
+
+	printf("Cheked.\n");
+
+	/*ENVIO EL RESULTADO*/
+	int factorial=1;
+	int i = 2;
+	while(i<=num){
+		factorial=factorial*i;
+		i++;
+	}
+    
+	mkfifo("./Pipes/FIFO2",0666);
 	
-       mkfifo("./Pipes/FIFO2", S_IFIFO|0666); 
+	fp=open("./Pipes/FIFO2",1);
+
+	char chars[7];
+
+	sprintf(chars,"%d",factorial);
+
+	write(fp,chars,sizeof(chars));
+	printf("Sent. \n");
+
+	execl("/bin/rm", "rm", "./Pipes/FIFO2", NULL);
+	return 0;
 }
 
