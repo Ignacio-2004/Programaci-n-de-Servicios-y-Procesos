@@ -7,11 +7,14 @@
 #include <time.h>
 #include <signal.h>
 #include <sys/wait.h>
-#include <unistd.h>
+
+int nv = 5;
 
 void wakeUp(){
     
-    printf("Han trasncurrido: %d s ",5);
+    printf("Han trasncurrido: %d\'\' \n",nv);
+    
+    nv +=5;
 
 }
 
