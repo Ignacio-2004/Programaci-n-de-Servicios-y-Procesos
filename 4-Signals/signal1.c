@@ -8,9 +8,7 @@
 #include <signal.h>
 #include <sys/wait.h>
 
-void dmensaje(){
-    
-    sleep(5);
+void smensaje(){
 
     time_t t;
     char *date;
@@ -18,12 +16,13 @@ void dmensaje(){
     time(&t);
     date = ctime(&t);
 
-    printf("(P): Fin del proceso %d: %s",getpid(),date);
+    printf("(S): Fin del proceso %d: %s",getpid(),date);
+
     exit(0);
     
 }
 
-void sActivities (){
+void dActivities (){
     
     time_t t;
     char *date;
@@ -31,15 +30,15 @@ void sActivities (){
     time(&t);
     date = ctime(&t);
 
-    printf("(S): Inicio del proceso %d: %s",getpid(),date);
+    printf("(D): Inicio del proceso %d: %s",getpid(),date);
 
-    kill(getppid(),10);
+    wait(NULL);
 
 }
 
-void dActivities (){
+void sActivities (){
 
-    signal(10,dmensaje);
+    signal(SIGINT,smensaje);
     while(1){}
     
 }
