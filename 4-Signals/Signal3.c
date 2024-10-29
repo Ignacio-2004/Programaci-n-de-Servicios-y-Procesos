@@ -16,7 +16,7 @@ void cathTry(){
     time(&t);
     date=ctime(&t);
 
-    FILE *file = fopen("./4-Signals/tries.txt","a");
+    FILE *file = fopen("./tries.txt","a");
 
     if (file == NULL) {
         perror("Error al abrir el archivo");
