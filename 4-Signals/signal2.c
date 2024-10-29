@@ -7,20 +7,22 @@
 #include <time.h>
 #include <signal.h>
 #include <sys/wait.h>
+#include <unistd.h>
 
 void wakeUp(){
     
-    printf("Han trasncurrido: %d'' ",5);
+    printf("Han trasncurrido: %d s ",5);
 
 }
 
 void main(){
 
-    signal(SIGVTALRM,wakeUp);
+    signal(SIGALRM,wakeUp);
 
     while(1){
         
-        sleep(5);
+        alarm(5);
+        pause();
 
     }
 
