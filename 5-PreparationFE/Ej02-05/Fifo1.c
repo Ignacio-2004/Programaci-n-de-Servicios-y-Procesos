@@ -17,6 +17,8 @@ void writeProcess(){
 
     num = rand() % 10;
 
+    printf("%d",num);
+
     fn = open("./FIFO1",1);
 
     printf("Send.\n");
@@ -29,7 +31,7 @@ void writeProcess(){
 
 void reading(){
 
-    fn = open("/FIFO1",0);
+    fn = open("./FIFO1",0);
 
     read(fn,&num,sizeof(int));
 
@@ -38,7 +40,7 @@ void reading(){
 
 void main(){
 
-    mkfifo("/FIFO1",0666);
+    mkfifo("./FIFO1",0666);
     
     writeProcess();
 

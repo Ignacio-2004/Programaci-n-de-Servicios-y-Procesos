@@ -1,0 +1,2 @@
+ejecutable1 --> Pipe texto
+ejecutable12 & ejecutable13 --> FIFO texto

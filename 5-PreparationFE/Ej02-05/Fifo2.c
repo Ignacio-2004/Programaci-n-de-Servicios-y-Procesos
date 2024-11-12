@@ -13,7 +13,7 @@ int num;
 
 void reading(){
 
-    fn = open("./fifos/FIFO1",0);
+    fn = open("./FIFO1",0);
 
     read(fn,&num,sizeof(int));
 
@@ -22,17 +22,17 @@ void reading(){
 
 int calc(int num2){
 
-    if(num2=1){
+    if(num2==1){
         return 1;
     }else{
-        calc(num2-1)*num2;
+        return calc(num2-1)*num2;
     }
 
 }
 
 void writing(){
 
-    fn=open("./fifos/FIFO1",1);
+    fn=open("./FIFO1",1);
 
     write(fn,&num,sizeof(int));
 
