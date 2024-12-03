@@ -6,8 +6,9 @@ public class Main {
         Consumidor consumidor = new Consumidor(cola, 001);
         Productor productor = new Productor(cola, 101);
 
-        consumidor.start();
         productor.start();
+        consumidor.start();
+        
     }
     
 }
